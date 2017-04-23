@@ -1,36 +1,37 @@
-name: White Paper
-description: >
-    A simple jekyll theme aimed at programmers who like clean interface to write posts
-    and show off some code.
-about: >
-    At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga. Et harum quidem rerum facilis est et expedita distinctio. Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere possimus, omnis voluptas assumenda est, omnis dolor repellendus. Temporibus autem quibusdam et aut officiis debitis aut rerum necessitatibus saepe eveniet ut et voluptates repudiandae sint et molestiae non recusandae. Itaque earum rerum hic tenetur a sapiente delectus, ut aut reiciendis voluptatibus maiores alias consequatur aut perferendis doloribus asperiores repellat.
-
-
-url: "http://vinitkumar.me/white-paper"
-baseurl: "/white-paper" 
+permalink: /blog/:year/:month/:title.html 
+include: ['.htaccess']
+exclude: [".rvmrc", ".rbenv-version", "README.md", "Rakefile", "changelog.md", "CNAME", "Gemfile", "Gemfile.lock"]
 markdown: kramdown
-highlighter: rouge
+highlights: pygments
+url: 
+cdn_url: 7u2t01.com1.z0.glb.clouddn.com
+lsi: false
+safe: true
+timezone: Asia/Shanghai
+auto: false 
 
-gems: [jekyll-paginate,  jekyll-gist]
+paginate: 8
+paginate_path: "page:num"
 
-paginate: 3
+kramdown:
+  auto_ids: true,
+  footnote_nr: 1
+  entity_output: as_char
+  toc_levels: 1..6
+  use_coderay: false
 
-logo:             logo.png
-disqus_shortname:
+JB :
+  IMAGE_PATH : http://coolshell.info/images
 
-owner:
-  name:           whitepaper
-  avatar:         ""
-  email:          ""
-  # Social networking links used in footer. Update and remove as you like.
-  twitter:
-  github:
-  stackexchange:
-  # For Google Authorship https://plus.google.com/authorship
-  google_plus:
+# presonal config
+domain: http://coolshell.info
+title: Lippi-浮生志
+description: Draw my life with code
+author: Lippi.OuYang
+email: ouyanglip@gmail.com
+github: LippiOuYang
 
-# Analytics and webmaster tools stuff goes here
-google_analytics:
-google_verify:
-# https://ssl.bing.com/webmaster/configure/verify/ownership Option 2 content= goes here
-bing_verify:
+config:
+  js_dir:
+  img_dir:
+  css_dir:

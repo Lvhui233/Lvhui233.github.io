@@ -1,135 +1,47 @@
-White Paper
-======
-**White Paper** is a theme for Jekyll. It is built keeping content in focus and is best for developers who also like
-to share code with their essays.
+### 博客地址
 
-#### Screenshots
+Github托管的是以前Jekyll版本的源码，现在博客用Hexo重新搭建
+#### 预览
 
-![sc1](https://cldup.com/HiKXSy5pAr.png "screen1")
+* Jekyll版本：EZLippi.github.io
+* Hexo 版本： [www.ezlippi.com](http://www.ezlippi.com)
+* Hexo版本源码：[https://coding.net/u/ezlippi/p/ezlippi/git/tree/coding-pages/](https://coding.net/u/ezlippi/p/ezlippi/git/tree/coding-pages/)
 
-![sc2](https://cldup.com/wKmYyj4CGM.png "screen2")
+### 使用Jekyll版本作为博客模板，仅需如下几步：
 
-![sc3](https://cldup.com/PnOO95ATKW.png "share")
+1. 首先Fork或Download一份本项目代码。 
+2. 修改_config.yaml及about.md文件，以变更个人信息。 
+3. 修改_include目录下相关文件，以配置网站统计(analytics.html)，网友评论(comment.html)，右侧栏目(categories.html),热门文章(hot.html),友情链接(links.html)等。 
+4. 修改CNAME文件，以绑定自己的域名。 
+5. 删除_posts下文章，换成你自己的。 
+6. 去谷歌自定义搜索新建一个你的搜索引擎，把你的Id替换根目录下search.html我的ID
+7. 最后，push到你自己的博客Repo~ 
 
-## Download
-* [Version 2.0.0](https://github.com/vinitkumar/white-paper/archive/gh-pages.zip)
+ *^_^*如果愿意，Star本项目一个吧~ 
 
-## Usage
+### 本项目使用了
 
-This theme could be used in two ways: 
+1. CNZZ的网站统计服务，官网：http://cnzz.com 
+2. 多说的评论功能，官网:http://duoshuo.com/
 
-- Clone this repo to your account, change the fields `_config.yml` file and add/edit/delete the content in the `_posts` directory. It won't require you to install anything on your machine.
+### 联系方式
 
-
-```yaml
-name: White Paper
-description: >
-    A simple jekyll theme aimed at programmers who like clean interface to write posts
-    and show off some code.
-about: >
-    At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga. Et harum quidem rerum facilis est et expedita distinctio. Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere possimus, omnis voluptas assumenda est, omnis dolor repellendus. Temporibus autem quibusdam et aut officiis debitis aut rerum necessitatibus saepe eveniet ut et voluptates repudiandae sint et molestiae non recusandae. Itaque earum rerum hic tenetur a sapiente delectus, ut aut reiciendis voluptatibus maiores alias consequatur aut perferendis doloribus asperiores repellat.
-
-
-url: ""
-baseurl: "" 
-markdown: kramdown
-highlighter: rouge
-
-gems: [jekyll-paginate,  jekyll-gist]
-
-paginate: 3
-
-logo:             logo.png
-disqus_shortname:
-
-owner:
-  name:           whitepaper
-  avatar:         ""
-  email:          ""
-  # Social networking links used in footer. Update and remove as you like.
-  twitter:
-  github:
-  stackexchange:
-  # For Google Authorship https://plus.google.com/authorship
-  google_plus:
-
-# Analytics and webmaster tools stuff goes here
-google_analytics:
-google_verify:
-# https://ssl.bing.com/webmaster/configure/verify/ownership Option 2 content= goes here
-bing_verify:
-
-```
-
-- Another way is to clone the project on your local machine and do the changes to the theme as per your choice. For this, follow the installation procedures next.
-
-### Installation
-
-This theme requires you to install couple of tools first to setup jekyll locally.
-
-```$
-git clone git@github.com:vinitkumar/white-paper.git
-
-# If you have ruby installed.
-gem install jekyll bundler
-
-# If you have node installed.
-npm install
-sudo npm install -g grunt-cli  #to get the task runner for grunt.
-bundle install
-jekyll serve
-
-# on running the serve script, the site will be live on 
-http://127.0.0.1:4000
-```
-
-This theme uses grunt to concat & minify the css for best performance. In order to prepare the css build. Run
-
-```$
-grunt
-```
-It will create a main.min.css file in the css folder.
+联系方式： Email(ouyanglip@gmail.com) 
 
 
-### Syntax Highlighting for the code.
+### 使用本项目作模板的博客链接
 
-This theme also provides syntax highlighting in different theme. Inside css folder, there is a syntax folder.
+* http://www.94geek.com  
+* http://www.haidaoxiaofei.me  
+* http://www.malphi.net  
+* http://happyaround.com  
+* http://tencentlocation.github.io  
+* http://wtaps.github.io 
+* http://maoshu.cc
+* http://x-carto.com/
+* (你的位置)  
 
-```$
-.
-├── emacs.css
-├── github.css
-├── monokai.css
-├── native.css
-├── syntax.css
-└── vim.css
+## 2016-02-25更新
 
-0 directories, 6 files
-```
-
-Now in the gruntfiles.js
-
-```js
-concat: {
-  dist: {
-    src: [
-      'css/base.css',
-      'css/sytax/emacs.css', // change this to another theme if you prefer, like vim.css and run grunt
-      'css/octicons.css'
-    ],
-    dest: 'css/<%= pkg.name %>.add.css'
-  }
-}
-```
-
-## License 
-* see [LICENSE](https://github.com/vinitkumar/white-paper/blob/gh-pages/LICENSE) file
-
-## Version 
-* Version 2.0.0
-
-## Contact
-#### Developer/Company
-* Homepage: http://vinitkumar.me
-* e-mail: vinit1414.08@bitmesra.ac.in
-* Twitter: [@vinitkme](https://twitter.com/vinitkme "vinitkme on twitter")
+* 本博客由Jekyl迁移到Hexo,博客地址[ezlippi](www.ezlippi.com),源码托管在了国内的[Coding.net](https://coding.net/u/ezlippi/p/ezlippi/git/tree/coding-pages/)
+* 使用Hexo搭建个人博客具体教程参考[Jekyll迁移到Hexo建立个人博客](http://www.ezlippi.com/blog/2016/02/jekyll-to-hexo.html)
