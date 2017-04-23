@@ -1,118 +1,135 @@
-# Hyde
+White Paper
+======
+**White Paper** is a theme for Jekyll. It is built keeping content in focus and is best for developers who also like
+to share code with their essays.
 
-Hyde is a brazen two-column [Jekyll](http://jekyllrb.com) theme that pairs a prominent sidebar with uncomplicated content. It's based on [Poole](http://getpoole.com), the Jekyll butler.
+#### Screenshots
 
-![Hyde screenshot](https://f.cloud.github.com/assets/98681/1831228/42af6c6a-7384-11e3-98fb-e0b923ee0468.png)
+![sc1](https://cldup.com/HiKXSy5pAr.png "screen1")
 
+![sc2](https://cldup.com/wKmYyj4CGM.png "screen2")
 
-## Contents
+![sc3](https://cldup.com/PnOO95ATKW.png "share")
 
-- [Usage](#usage)
-- [Options](#options)
-  - [Sidebar menu](#sidebar-menu)
-  - [Sticky sidebar content](#sticky-sidebar-content)
-  - [Themes](#themes)
-  - [Reverse layout](#reverse-layout)
-- [Development](#development)
-- [Author](#author)
-- [License](#license)
-
+## Download
+* [Version 2.0.0](https://github.com/vinitkumar/white-paper/archive/gh-pages.zip)
 
 ## Usage
 
-Hyde is a theme built on top of [Poole](https://github.com/poole/poole), which provides a fully furnished Jekyll setup—just download and start the Jekyll server. See [the Poole usage guidelines](https://github.com/poole/poole#usage) for how to install and use Jekyll.
+This theme could be used in two ways: 
+
+- Clone this repo to your account, change the fields `_config.yml` file and add/edit/delete the content in the `_posts` directory. It won't require you to install anything on your machine.
 
 
-## Options
+```yaml
+name: White Paper
+description: >
+    A simple jekyll theme aimed at programmers who like clean interface to write posts
+    and show off some code.
+about: >
+    At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga. Et harum quidem rerum facilis est et expedita distinctio. Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere possimus, omnis voluptas assumenda est, omnis dolor repellendus. Temporibus autem quibusdam et aut officiis debitis aut rerum necessitatibus saepe eveniet ut et voluptates repudiandae sint et molestiae non recusandae. Itaque earum rerum hic tenetur a sapiente delectus, ut aut reiciendis voluptatibus maiores alias consequatur aut perferendis doloribus asperiores repellat.
 
-Hyde includes some customizable options, typically applied via classes on the `<body>` element.
 
+url: ""
+baseurl: "" 
+markdown: kramdown
+highlighter: rouge
 
-### Sidebar menu
+gems: [jekyll-paginate,  jekyll-gist]
 
-Create a list of nav links in the sidebar by assigning each Jekyll page the correct layout in the page's [front-matter](http://jekyllrb.com/docs/frontmatter/).
+paginate: 3
+
+logo:             logo.png
+disqus_shortname:
+
+owner:
+  name:           whitepaper
+  avatar:         ""
+  email:          ""
+  # Social networking links used in footer. Update and remove as you like.
+  twitter:
+  github:
+  stackexchange:
+  # For Google Authorship https://plus.google.com/authorship
+  google_plus:
+
+# Analytics and webmaster tools stuff goes here
+google_analytics:
+google_verify:
+# https://ssl.bing.com/webmaster/configure/verify/ownership Option 2 content= goes here
+bing_verify:
 
 ```
----
-layout: page
-title: About
----
+
+- Another way is to clone the project on your local machine and do the changes to the theme as per your choice. For this, follow the installation procedures next.
+
+### Installation
+
+This theme requires you to install couple of tools first to setup jekyll locally.
+
+```$
+git clone git@github.com:vinitkumar/white-paper.git
+
+# If you have ruby installed.
+gem install jekyll bundler
+
+# If you have node installed.
+npm install
+sudo npm install -g grunt-cli  #to get the task runner for grunt.
+bundle install
+jekyll serve
+
+# on running the serve script, the site will be live on 
+http://127.0.0.1:4000
 ```
 
-**Why require a specific layout?** Jekyll will return *all* pages, including the `atom.xml`, and with an alphabetical sort order. To ensure the first link is *Home*, we exclude the `index.html` page from this list by specifying the `page` layout.
+This theme uses grunt to concat & minify the css for best performance. In order to prepare the css build. Run
+
+```$
+grunt
+```
+It will create a main.min.css file in the css folder.
 
 
-### Sticky sidebar content
+### Syntax Highlighting for the code.
 
-By default Hyde ships with a sidebar that affixes it's content to the bottom of the sidebar. You can optionally disable this by removing the `.sidebar-sticky` class from the sidebar's `.container`. Sidebar content will then normally flow from top to bottom.
+This theme also provides syntax highlighting in different theme. Inside css folder, there is a syntax folder.
 
-```html
-<!-- Default sidebar -->
-<div class="sidebar">
-  <div class="container sidebar-sticky">
-    ...
-  </div>
-</div>
+```$
+.
+├── emacs.css
+├── github.css
+├── monokai.css
+├── native.css
+├── syntax.css
+└── vim.css
 
-<!-- Modified sidebar -->
-<div class="sidebar">
-  <div class="container">
-    ...
-  </div>
-</div>
+0 directories, 6 files
 ```
 
+Now in the gruntfiles.js
 
-### Themes
-
-Hyde ships with eight optional themes based on the [base16 color scheme](https://github.com/chriskempson/base16). Apply a theme to change the color scheme (mostly applies to sidebar and links).
-
-![Hyde in red](https://f.cloud.github.com/assets/98681/1831229/42b0b354-7384-11e3-8462-31b8df193fe5.png)
-
-There are eight themes available at this time.
-
-![Hyde theme classes](https://f.cloud.github.com/assets/98681/1817044/e5b0ec06-6f68-11e3-83d7-acd1942797a1.png)
-
-To use a theme, add anyone of the available theme classes to the `<body>` element in the `default.html` layout, like so:
-
-```html
-<body class="theme-base-08">
-  ...
-</body>
+```js
+concat: {
+  dist: {
+    src: [
+      'css/base.css',
+      'css/sytax/emacs.css', // change this to another theme if you prefer, like vim.css and run grunt
+      'css/octicons.css'
+    ],
+    dest: 'css/<%= pkg.name %>.add.css'
+  }
+}
 ```
 
-To create your own theme, look to the Themes section of [included CSS file](https://github.com/poole/hyde/blob/master/public/css/hyde.css). Copy any existing theme (they're only a few lines of CSS), rename it, and change the provided colors.
+## License 
+* see [LICENSE](https://github.com/vinitkumar/white-paper/blob/gh-pages/LICENSE) file
 
-### Reverse layout
+## Version 
+* Version 2.0.0
 
-![Hyde with reverse layout](https://f.cloud.github.com/assets/98681/1831230/42b0d3ac-7384-11e3-8d54-2065afd03f9e.png)
-
-Hyde's page orientation can be reversed with a single class.
-
-```html
-<body class="layout-reverse">
-  ...
-</body>
-```
-
-
-## Development
-
-Hyde has two branches, but only one is used for active development.
-
-- `master` for development.  **All pull requests should be submitted against `master`.**
-- `gh-pages` for our hosted site, which includes our analytics tracking code. **Please avoid using this branch.**
-
-
-## Author
-
-**Mark Otto**
-- <https://github.com/mdo>
-- <https://twitter.com/mdo>
-
-
-## License
-
-Open sourced under the [MIT license](LICENSE.md).
-
-<3
+## Contact
+#### Developer/Company
+* Homepage: http://vinitkumar.me
+* e-mail: vinit1414.08@bitmesra.ac.in
+* Twitter: [@vinitkme](https://twitter.com/vinitkme "vinitkme on twitter")
