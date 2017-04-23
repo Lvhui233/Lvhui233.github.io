@@ -1,37 +1,26 @@
-permalink: /blog/:year/:month/:title.html 
-include: ['.htaccess']
-exclude: [".rvmrc", ".rbenv-version", "README.md", "Rakefile", "changelog.md", "CNAME", "Gemfile", "Gemfile.lock"]
-markdown: kramdown
-highlights: pygments
-url: 
-cdn_url: 7u2t01.com1.z0.glb.clouddn.com
-lsi: false
-safe: true
-timezone: Asia/Shanghai
-auto: false 
+# Dependencies
+markdown:         redcarpet
+highlighter:      pygments
 
-paginate: 8
-paginate_path: "page:num"
+# Permalinks
+permalink:        pretty
+relative_permalinks: true
 
-kramdown:
-  auto_ids: true,
-  footnote_nr: 1
-  entity_output: as_char
-  toc_levels: 1..6
-  use_coderay: false
+# Setup
+title:            Hyde
+tagline:          'A Jekyll theme'
+description:      'A brazen two-column <a href="http://jekyllrb.com" target="_blank">Jekyll</a> theme that pairs a prominent sidebar with uncomplicated content. Made by <a href="https://twitter.com/mdo" target="_blank">@mdo</a>.'
+url:              http://hyde.getpoole.com
+baseurl:          /
 
-JB :
-  IMAGE_PATH : http://coolshell.info/images
+author:
+  name:           'Mark Otto'
+  url:            https://twitter.com/mdo
 
-# presonal config
-domain: http://coolshell.info
-title: Lippi-浮生志
-description: Draw my life with code
-author: Lippi.OuYang
-email: ouyanglip@gmail.com
-github: LippiOuYang
+paginate:         5
 
-config:
-  js_dir:
-  img_dir:
-  css_dir:
+# Custom vars
+version:          2.1.0
+
+github:
+  repo:           https://github.com/poole/hyde
