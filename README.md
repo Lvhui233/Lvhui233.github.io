@@ -83,7 +83,7 @@ jekyll serve
 http://127.0.0.1:4000
 ```
 
-This theme uses grunt to concat & minify the css for best performance. In order to prepare the css build. Run
+This theme use grunt to concat & minify the css for best performance. In order to prepare the css build. Run
 
 ```$
 grunt
