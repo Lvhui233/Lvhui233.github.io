@@ -1,0 +1,146 @@
+---
+layout:     post
+title:      "PHP数组"
+subtitle:   "PHP array"
+date:       2017-06-01 12:00:00
+author:     "LvI"
+header-img: "img/post-bg-re-vs-ng2.jpg"
+header-mask: 0.3
+catalog: true
+tags:
+    - PHP
+---
+
+
+## 数组的遍历
+
+```
+foreach($array as $v){
+	//第一种
+}
+foreach($array as $k=>$v){
+	//第二种
+} 
+```
+
+## 系统全局数组
+
+`$_REQUEST` 通过`$_GET`和`$_POST`提交的数据都可以用它获得
+
+`$_SERVER` 保存一些服务信息资料，如主机ip等
+
+## 数组操作函数
+
+### 指针获得键值与键名
+
+![](http://Lvhui233.github.io/img/key.png)
+
+```
+key($arr); //返回数组当前单元的键名
+current($arr); //返回数组当前单元的键值
+next($arr); //将指针移动到下一单元
+prev($arr); //将指针移动到上一单元
+```
+
+### 检查数组
+
+#### 数组中的元素个数
+
+```
+count($arr); /计算数组长度
+```
+
+#### 检查数组中时否存在某个值
+
+```
+in_array('要检测的值',数组);
+```
+
+#### 检查数组是否有某个键名
+
+```
+array_key_exists(键名,数组);
+```
+
+### array_filter函数
+
+用回调函数过滤数组中单元，如果回调函数返回false会删除对应元素的键值，返回true则会保留。键名都会保留
+
+```
+$arr = array('苹果','西瓜','鸭梨','芒果');
+$re = array_filter($arr,'foo');
+print_r($re);
+function foo($v){
+    if ($v=='西瓜') {
+        return false;
+    }
+    return true;
+}
+```
+
+### array_map函数
+
+用回调函数过滤数组中单元，并返回一个数组，只返回真假，真是1，假无值
+
+```
+$shuiguo = array('苹果', '西瓜', '鸭梨', '芒果');
+$shuiguo2 = array('芒果','西瓜','椰子','菠萝');
+//array_map()将每次的函数的运行结果都记录下来
+$re = array_map('foo', $shuiguo, $shuiguo2);
+print_r($re);
+function foo($x,$y){
+    if ($x==$y) {
+        return true;
+    }
+    return false;
+}
+```
+
+### 删除和添加数组元素
+
+```
+array[]=array(); //向数组中追加单元
+array_push(数组,新元素); //向数组最后追加一个或多个单元
+array_pop(数组); //删除数组最后一个单元
+array_unshift(数组,元素); // 向数组最前面追加一个或多个单元
+array_unshift(数组); //删除数组里的第一个单元
+```
+
+### 键名和键值
+
+```
+array_keys($arr); //返回数组中所有的键名
+array_valuea($arr); //返回数组中所有的键值
+```
+
+#### 键名和键值反转
+
+```
+array_flip($arr); //返回一个数组
+```
+
+### 合并数组
+
+合并数组的时候，如果有键名相同，以第二个传入的参数为准
+
+```
+array_merge($arr1,$arr2); //将后面的数组合并到前面的数组中
+```
+
+### 键名大小写转换
+
+```
+array_change_key_case(数组,CASE_UPPER); //键名全变大写
+array_change_key_case(数组,CASE_LOWER); //键名全变小写
+```
+
+### 将数组转成字符串表示
+
+`var_export`在不加true参数时没有返回值，会直接输出数组，和`var_dump`类似
+
+```
+var_export($arr,true); //返回一个字符串形式
+```
+
+
+
