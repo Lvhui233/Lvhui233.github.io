@@ -1,0 +1,61 @@
+---
+layout:     post
+title:      "PHP文件操作"
+subtitle:   "PHP file operation"
+date:       2017-06-02 12:00:00
+author:     "LvI"
+header-img: "img/post-bg-re-vs-ng2.jpg"
+header-mask: 0.3
+catalog: true
+tags:
+    - PHP
+---
+
+## 获得文件特有属性
+
+### 文件是否可写
+
+```
+is_writable('a.txt'); //返回布尔值
+```
+
+### 文件是否可读
+
+```
+is_readable('a.txt'); //返回布尔值
+```
+
+### 获得文件大小
+
+```
+filesize('a.txt'); //返回大小以字节为单位
+```
+
+## 文件内容读写
+
+### 读取文件内容
+
+```
+$str = file_get_contents('a.txt); //将整个文件读入一个字符串
+echo $str;
+```
+
+### 将一个字符串写入文件
+
+```
+file_put_contents('a.txt','hello');
+```
+
+## 文件相关时间
+
+### 设置默认时区
+
+```
+date_default_timezone_set('prc'); //prc为东八区
+```
+
+### 取得文件修改时间
+
+```
+filemtime('a.txt');
+```
