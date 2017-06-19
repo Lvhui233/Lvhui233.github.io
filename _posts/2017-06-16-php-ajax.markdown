@@ -1,0 +1,48 @@
+---
+layout:     post
+title:      "PHP AJAX异步处理"
+subtitle:   "PHP AJAX"
+date:       2017-06-16 12:00:00
+author:     "LvI"
+header-img: "img/post-bg-re-vs-ng2.jpg"
+header-mask: 0.3
+catalog: true
+tags:
+    - PHP
+---
+
+## AJAX异步处理
+
+AJAX是利用javascript中的XMLHttpRequest对象直接与服务器进行数据
+交互，在不需要跳转页面的情况下做出响应，并改变页面内容
+
+## jquery的ajax用法
+
+```
+$(function(){
+    // 当form标签#wishform被提交的时候，就会自动触发这个submit方法
+    $('#wishform').submit(function(){
+        // 发送ajax
+        $.ajax({
+            url:"index.php?c=message&a=addmsg",//数据发送地址
+            type: 'post',//数据传输方式
+            data:{
+                'name':$('#username').val(),
+                'content': $('#content').val()
+            },//需要传送的数据(json形式)
+            dataType:'json',//返回的数据格式
+            success:function(data){
+			//这是成功接收到返回结果后执行的函数
+               		alert('接收成功');
+                }
+            },
+            error:function (err) {
+            //这是接收失败执行的函数
+                alert(err);
+            }
+        })
+        //阻止默认的提交事件
+        return false;
+    })
+})
+```
