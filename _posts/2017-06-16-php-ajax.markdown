@@ -30,6 +30,7 @@ $(function(){
                 'name':$('#username').val(),
                 'content': $('#content').val()
             },//需要传送的数据(json形式)
+            //另一种形式$(#wish).serialize(),用`serialize()`函数将数据序列化
             dataType:'json',//返回的数据格式
             success:function(data){
 			//这是成功接收到返回结果后执行的函数
@@ -45,4 +46,13 @@ $(function(){
         return false;
     })
 })
+```
+
+## php返回数据操作
+
+如果需要返回值需要用`json_encode()`处理数据,转换成json形式
+
+```
+//echo 的内容将作为返回值,返回给js
+echo json_encode(array('sta'=>'ok'));
 ```
