@@ -1,0 +1,86 @@
+---
+layout:     post
+title:      "HTML概述"
+subtitle:   "HTML summary"
+date:       2017-04-18 12:00:00
+author:     "LvI"
+header-img: "img/post-bg-os-metro.jpg"
+header-mask: 0.3
+catalog: true
+tags:
+    - HTML
+---
+
+## html
+
+html 超文本标记语言 HyperText Markup language，上手简单基本没有逻辑性
+
+### 文档声明
+
+```
+<!DOCTYPE html>
+<html>
+	<head>
+		<title></title>
+	</head>
+	<body>
+	</body>
+</html>	
+```
+
+### 头部元素标签
+
+关键词
+
+```
+<meta name="keywords" content="...">
+```
+
+描述
+
+```
+<meta name="description" content="...">
+```
+
+页面指定时间跳转
+
+```
+<meta http-equiv="refresh" content="5,URL:www.baidu.com">
+```
+
+网页编码
+
+```
+<code><meta charset="utf-8">
+
+<meta charset="gbk">
+```
+
+## 网页乱码解决方法
+
+网页编码可以理解为头部设置的编码和网页文件本身的编码两部分,需要将两部分统一编码
+才不会出现乱码调整网页编码可以使用emeditor等编辑器，不要用submit
+
+## a标签
+
+```
+<a href="" target="_blank" title=""></a>
+```
+
+### 锚链接
+
+```
+<a href="#目标位置的ID"></a>
+```
+
+## 预格式标签
+
+```
+<pre>可以完整显示格式</pre>
+```
+
+## 字符实体
+
+空格 `&nbsp` `<` `&lt` `>` `&gt` 等都是一些无法直接打出的代码,需要用代码代替
+
+
