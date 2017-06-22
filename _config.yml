@@ -15,8 +15,8 @@ RSS: false
 weibo_username:     
 zhihu_username:     
 github_username:    Lvhui233
-twitter_username:   
-#facebook_username:  huxpro
+twitter_username:   keith142857
+#facebook_username:  
 # linkedin_username:  firstname-lastname-idxxxx
 
 
@@ -48,13 +48,13 @@ kramdown:
 
 
 # Disqus settings
-disqus_username: hux
+disqus_username: keith
 
 # Netease setttings
 netease_comment: true
 
 # Duoshuo settings
-duoshuo_username: huxblog
+duoshuo_username: 
 # Share component is depend on Comment so we can NOT use share only.
 duoshuo_share: true                     # set to false if you want to use Comment without Sharing
 
