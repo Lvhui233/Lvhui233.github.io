@@ -19,13 +19,13 @@ html 超文本标记语言 HyperText Markup language，上手简单基本没有�
 
 ```
 <!DOCTYPE html>
-<html>
-	<head>
-		<title></title>
-	</head>
-	<body>
-	</body>
-</html>	
+	<html>
+		<head>
+			<title></title>
+		</head>
+		<body>
+		</body>
+	</html>	
 ```
 
 ### 头部元素标签
@@ -52,7 +52,6 @@ html 超文本标记语言 HyperText Markup language，上手简单基本没有�
 
 ```
 <code><meta charset="utf-8">
-
 <meta charset="gbk">
 ```
 

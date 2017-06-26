@@ -1,0 +1,124 @@
+---
+layout:     post
+title:      "CSS 基础"
+subtitle:   "CSS basics"
+date:       2017-04-22 12:00:00
+author:     "LvI"
+header-img: "img/post-bg-os-metro.jpg"
+header-mask: 0.3
+catalog: true
+tags:
+    - CSS
+---
+
+
+## css引入方式
+
+### 行内样式
+
+通过标签的`style`属性添加
+
+### 嵌入样式
+
+在head标签中添加`style`标签
+
+###引入样式
+
+在head标签中添加link标签
+
+```
+<link rel="stylesheet" type="text/css" href="">
+```
+
+### 导入样式
+
+在js文件中用`@import url(外部样式表位置)`来导入其他js样式
+
+## 选择器
+
+### 标签选择器
+
+通过标签名直接选择标签
+
+### id选择器
+
+通过id名进行选择，id名要保持唯一性
+
+```
+#pic
+```
+
+### 类选择器
+
+通过选择类名，可以选择多个标签
+
+```
+.box
+```
+
+### 交叉选择器
+
+`#box.p`选择的是id是box的元素q且标签名是p的元素,注意中间没有空格
+
+### 子代选择器
+
+```
+#box p
+//选择的是id是box的元素,里面的标签名是p的元素,空格表示父子关系
+#box>p 
+//选择的是id是box的元素的直系子元素，也就是第一代子元素。
+```
+
+### 群组选择器
+
+```
+span,.hd,#box p
+//多个选择器用逗号隔开，每个选择器互不干扰。
+```
+
+### 通用选择器
+
+```
+* //选择所有元素
+```
+
+### 伪类选择器
+
+```
+//通过元素状态设置样式
+#box:hover
+```
+
+## css的叠加性与继承性
+
+- css叠加性：不同的选择器给同一个元素加不同多样式，都能生效
+- css继承性：子元素会继承父级元素的文字相关样式
+
+## 行级元素与块级元素
+
+行级元素特点：
+1. 不能设置宽高
+2. 能和其他元素待在同一行
+3. 常见的行级元素：a span strong u em 
+
+块级元素特点：
+1. 能设置宽高
+2. 不和其他元素待在同一行，自己霸占一行
+3. 常见的块级元素：div p ul li dl dd dt h1-h6 
+
+行内块级元素特点：
+1. 能设置宽高
+2. 能待在同一行
+3. 常见的行内块级元素：img 表单(input textarea select)
+
+## 文字样式
+
+- 字体：`font-family `
+- 字体大小：`font-size `
+- 字体水平位置：`text-align` 
+- 文字划线：`text-decoration` 
+- 字符间距：`letter-spacing` 
+- 行高：`line-height` 
+- 首行缩进：`text-indent` 
+- 文字粗细：`font-weight` 
+- 字体倾斜：`font-style` 

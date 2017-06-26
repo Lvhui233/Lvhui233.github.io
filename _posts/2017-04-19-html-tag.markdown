@@ -1,0 +1,39 @@
+---
+layout:     post
+title:      "HTML 标签"
+subtitle:   "HTML tag"
+date:       2017-04-19 12:00:00
+author:     "LvI"
+header-img: "img/post-bg-os-metro.jpg"
+header-mask: 0.3
+catalog: true
+tags:
+    - HTML
+---
+
+
+## 单标签
+
+```
+<img src="">
+//属性 src width height alt title
+```
+
+## 表格
+
+```
+<table> //table标签表示表格
+<tr>标签代表行
+<th>代表表头单元格
+<td>代表单元格
+```
+
+表格每一列的宽度是相同的，每一行的高度是相同的，改变一个单元格的宽高，同时也会影响到其他的单元格
+### 表格的合并
+
+合并行用rowspan，合并单元格用colspan，无论是合并行还是合并单元格，都需要将被合并的单元格代码删除
+
+用dreamweaver可以快速的合并，减少计算。
+
+
+
