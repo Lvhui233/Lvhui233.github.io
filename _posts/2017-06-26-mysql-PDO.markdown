@@ -1,0 +1,175 @@
+---
+layout:     post
+title:      "mysql PDO"
+subtitle:   "MySQL PDO"
+date:       2017-06-26 12:00:00
+author:     "LvI"
+header-img: "img/post-bg-re-vs-ng2.jpg"
+header-mask: 0.3
+catalog: true
+tags:
+    - MySQL
+---
+
+
+## PDP概述
+
+PDO扩展为PHP访问数据库定义了一个轻量级的、一致性的接口，它提供了
+一个数据访问抽象层，这样，无论使用什么数据库，都可以通过一致的
+函数执行查询和获取数据。PDO随PHP5.1发行
+
+## 开启PDO
+
+### linux下开启
+
+- 如果你正在使⽤用PHP5.1版本，PDO和PDO SQLITE已经包含在了此 发行版中 
+- yum –y install php-pdo
+
+### window下开启
+
+- Window开启PDO需要修改php.ini文件，先将extension=php_pdo.dll前面的分号去掉
+- 将需要的数据库驱动开启，如将;extension=php_pdo_mysql.dll前的分号去掉，
+就开启了MYSQL数据库驱动，可以使用PDO抽象层操作 MYSQL了，其他数据库操作也是
+按这种方式操作 
+
+## php中使用PDO
+
+### 返回数据
+
+```
+//只获得关联数组
+$result->fetchAll(PDO::FETCH_ASSOC)
+//获得索引数组
+$result->fetchAll(PDO::FETCH_NUM) 
+//得到关联和索引所表示的数据
+$result->fetchAll(PDO::FETCH_BOTH) 
+//得到对象形式表示的数据
+$result->fetchAll(PDO::FETCH_OBJ)
+```
+
+### 错误处理
+
+PDO::ATTR_ERRMODE 错误提示
+
+```
+//不显示错误信息
+PDO::ERRMODE_SILENT
+//显示警告错误
+PDO::ERRMODE_WARNING 
+//抛出异常
+PDO::ERRMODE_EXCEPTION 
+```
+
+### 有结果集操作
+
+```
+<?php
+header('content-type:text/html;charset=utf-8');
+
+//指定要连接的数据库信息
+$dsn = 'mysql:host=localhost;dbname=hd82';
+$username = 'root';//数据库服务器用户名
+$password = 'root';//数据库服务器密码
+//如果在try之中产生了"PDO的异常错误"会被catch捕捉到
+try {
+	//连接数据库并且选择数据库
+	$pdo = new PDO($dsn, $username, $password);
+	//设置错误(异常错误，能被catch捕获到)
+	$pdo -> setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+	//设置字符集（根据客户端的字符集来设置）
+	//	query是运行有结果集的sql语句
+	$pdo -> query("set names utf8");
+	//发送sql语句
+	$result = $pdo -> query("select * from stu");
+	//从结果集对象获得数组
+	//PDO::FETCH_ASSOC 获得关联数组
+//	获得比较干净的关联数组
+	$data = $result->fetchAll(PDO::FETCH_ASSOC);
+
+	print_r($data);
+
+} catch (PDOException $e) {//捕获错误之后，由开发人员自由处理
+	echo "<span style='color:red'>" . $e -> getMessage() . "</span>";
+}
+?>
+```
+
+#### 获得返回值
+
+```
+//获得全部数据
+$data = $result->fetchAll(PDO::FETCH_ASSOC);
+//获得单条数据
+$data = $result->fetch(PDO::FETCH_ASSOS);
+//while循环获得全部数据
+$data=array();
+while($result->fetch(PDO::FETCH_ASSOS)){
+	$data[]= $result->fetch(PDO::FETCH_ASSOS);
+}
+```
+### 无结果集操作
+
+```
+<?php
+header('content-type:text/html;charset=utf-8');
+
+//指定要连接的数据库信息
+$dsn = 'mysql:host=localhost;dbname=hd82';
+$username = 'root';//数据库服务器用户名
+$password = 'root';//数据库服务器密码
+//如果在try之中产生了"PDO的异常错误"会被catch捕捉到
+try {
+	//连接数据库并且选择数据库
+	$pdo = new PDO($dsn, $username, $password);
+	//设置错误(异常错误，能被catch捕获到)
+	$pdo -> setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+	//设置字符集（根据客户端的字符集来设置）
+	$pdo -> query("set names utf8");
+	//	exec是执行无结果集操作
+//	返回被删除的条数
+	$result = $pdo -> exec("delete from stubak order by age desc limit 2");
+	echo "成功删掉{$result}条数据";
+
+} catch (PDOException $e) {//捕获错误之后，由开发人员自由处理
+	echo "<span style='color:red'>" . $e -> getMessage() . "</span>";
+}
+?>
+```
+
+### 预处理
+
+预准备语句句是SQL语句编译后形成的模板,也就是说语句句只解析一次,
+以后只要传替不同的参数就可以了
+
+```
+<?php
+header('content-type:text/html;charset=utf-8');
+
+//指定要连接的数据库信息
+$dsn = 'mysql:host=localhost;dbname=hd82';
+$username = 'root';
+//数据库服务器用户名
+$password = 'root';
+//数据库服务器密码
+//如果在try之中产生了"PDO的异常错误"会被catch捕捉到
+try {
+//	链接数据库
+	$pdo = new PDO($dsn, $username, $password);
+//	定义sql语句模板
+	$sql = "insert into stu(name,age) values(?,?)";
+//	对语句预处理
+	$state = $pdo -> prepare($sql);
+	$name = $_GET['name'];
+	$age = $_GET['age'];
+//	定于语句模板中的参数
+//	第三个是参数类型
+	$state -> bindParam(1,$name, PDO::PARAM_STR);
+	$state -> bindParam(2,$age, PDO::PARAM_INT);
+	$row = $state -> execute();
+	print_r($row);
+} catch (PDOException $e) {
+	$e -> getMessage();
+}
+?>
+```
+
