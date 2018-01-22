@@ -65,8 +65,8 @@ border-radius:50%;
 
 ## 透明度
 
-- 火狐等w3c浏览器:`opacity：0.6 ` 
-- IE低版本:`filter: alpha(opacity：60)`
+- 火狐等w3c浏览器:`opacity:0.6 ` 
+- IE低版本:`filter: alpha(opacity=60)`
 
 ## 直接给颜色加透明
 
