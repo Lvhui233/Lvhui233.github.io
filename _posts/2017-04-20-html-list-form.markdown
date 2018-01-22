@@ -77,7 +77,7 @@ name用于服务器获取数据
 
 - name用于指定列表框的名字
 - size为显示的项目数，缺省值为1
-- multiple设置后可以多选</h3>
+- multiple设置后可以多选
 
 ## iframe标签
 

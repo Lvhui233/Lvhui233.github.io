@@ -30,30 +30,15 @@ html 超文本标记语言 HyperText Markup language，上手简单基本没有�
 
 ### 头部元素标签
 
-关键词
-
-```
-<meta name="keywords" content="...">
-```
-
-描述
-
-```
-<meta name="description" content="...">
-```
-
-页面指定时间跳转
-
-```
-<meta http-equiv="refresh" content="5,URL:www.baidu.com">
-```
-
-网页编码
-
-```
-<code><meta charset="utf-8">
-<meta charset="gbk">
-```
+- 关键词
+`<meta name="keywords" content="...">`
+- 描述
+`<meta name="description" content="...">`
+- 页面指定时间跳转
+`<meta http-equiv="refresh" content="5,URL:http://www.baidu.com">`
+- 网页编码
+`<meta charset="utf-8">`
+`<meta charset="gbk">`
 
 ## 网页乱码解决方法
 
@@ -80,6 +65,6 @@ html 超文本标记语言 HyperText Markup language，上手简单基本没有�
 
 ## 字符实体
 
-空格 `&nbsp` `<` `&lt` `>` `&gt` 等都是一些无法直接打出的代码,需要用代码代替
+空格 `&nbsp` 小于号`<` `&lt` 大于号`>` `&gt` 等都是一些无法直接打出的代码,需要用代码代替
 
 
