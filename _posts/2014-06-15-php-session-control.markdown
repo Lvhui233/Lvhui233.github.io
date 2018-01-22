@@ -2,7 +2,7 @@
 layout:     post
 title:      "PHP会话控制"
 subtitle:   "PHP session control"
-date:       2017-06-15 12:00:00
+date:       2014-06-15 12:00:00
 author:     "LvI"
 header-img: "img/post-bg-re-vs-ng2.jpg"
 header-mask: 0.3

@@ -2,7 +2,7 @@
 layout:     post
 title:      "CSS 盒模型与浮动"
 subtitle:   "CSS box and float"
-date:       2017-04-23 12:00:00
+date:       2014-04-23 12:00:00
 author:     "LvI"
 header-img: "img/post-bg-os-metro.jpg"
 header-mask: 0.3

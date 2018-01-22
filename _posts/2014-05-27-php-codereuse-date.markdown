@@ -2,7 +2,7 @@
 layout:     post
 title:      "PHP代码重用和日期"
 subtitle:   "PHP code reuse and date"
-date:       2017-05-27 12:00:00
+date:       2014-05-27 12:00:00
 author:     "LvI"
 header-img: "img/post-bg-re-vs-ng2.jpg"
 header-mask: 0.3

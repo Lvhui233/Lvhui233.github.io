@@ -2,7 +2,7 @@
 layout:     post
 title:      "CSS 定位和背景"
 subtitle:   "CSS position and background"
-date:       2017-04-24 12:00:00
+date:       2014-04-24 12:00:00
 author:     "LvI"
 header-img: "img/post-bg-os-metro.jpg"
 header-mask: 0.3

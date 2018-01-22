@@ -2,7 +2,7 @@
 layout:     post
 title:      "PHP数学函数和字符串"
 subtitle:   "PHP Math and string"
-date:       2017-05-31 12:00:00
+date:       2014-05-31 12:00:00
 author:     "LvI"
 header-img: "img/post-bg-re-vs-ng2.jpg"
 header-mask: 0.3

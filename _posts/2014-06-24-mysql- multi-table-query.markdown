@@ -2,7 +2,7 @@
 layout:     post
 title:      "mysql 多表查询"
 subtitle:   "MySQL multi-table query"
-date:       2017-06-24 12:00:00
+date:       2014-06-24 12:00:00
 author:     "LvI"
 header-img: "img/post-bg-re-vs-ng2.jpg"
 header-mask: 0.3

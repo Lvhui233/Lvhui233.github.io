@@ -2,7 +2,7 @@
 layout:     post
 title:      "CSS 字体图标与label"
 subtitle:   "CSS icon and label"
-date:       2017-04-25 12:00:00
+date:       2014-04-25 12:00:00
 author:     "LvI"
 header-img: "img/post-bg-os-metro.jpg"
 header-mask: 0.3

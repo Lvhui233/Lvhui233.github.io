@@ -2,7 +2,7 @@
 layout:     post
 title:      "PHP正则表达式"
 subtitle:   "PHP regular expression"
-date:       2017-06-05 12:00:00
+date:       2014-06-05 12:00:00
 author:     "LvI"
 header-img: "img/post-bg-re-vs-ng2.jpg"
 header-mask: 0.3
