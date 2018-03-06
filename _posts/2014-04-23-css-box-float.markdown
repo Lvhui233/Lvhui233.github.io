@@ -23,7 +23,7 @@ tags:
 
 ## 块元素居中
 
-可以设置左右边距为`auto `
+可以设置左右边距为auto
 `margin：0 auto ;`
 
 ## 全局reset
