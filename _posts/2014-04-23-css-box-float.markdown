@@ -2,7 +2,7 @@
 layout:     post
 title:      "CSS 盒模型与浮动"
 subtitle:   "CSS box and float"
-date:       2014-04-23 12:00:00
+date:       2017-04-23 12:00:00
 author:     "LvI"
 header-img: "img/post-bg-os-metro.jpg"
 header-mask: 0.3
@@ -44,6 +44,7 @@ tags:
 overflow //用来设置溢出 
 overflow:hidden //溢出隐藏 
 display: none; //隐藏元素
+visibility:hidden;//隐藏元素,保留其原有位置
 ```
 
 ## 浮动属性
@@ -56,8 +57,8 @@ float元素特点：
 
 ## 经典布局
 
-1. 弹性布局
-2. 双飞翼布局（圣杯布局）
+1. 弹性布局	一侧浮动宽度固定，另一侧不设宽度
+2. 双飞翼布局（圣杯布局）左右两侧分别向左右浮动，且宽度固定，中间区域不设宽度
 
 ## 子元素浮动无法撑起父元素时的处理方法
 
