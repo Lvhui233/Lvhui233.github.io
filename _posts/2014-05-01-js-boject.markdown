@@ -1,0 +1,77 @@
+---
+layout:     post
+title:      "javascript 对象"
+subtitle:   "javascript object"
+date:       2014-05-01 12:00:00
+author:     "LvI"
+header-img: "img/post-bg-os-metro.jpg"
+header-mask: 0.3
+catalog: true
+tags:
+    - JS
+---
+
+## 声明对象
+
+### json形式声明
+
+```
+var phone = {
+	price:'5000$',
+	weight:'150g',
+	chat:function(){
+		alert('can chat');
+	}
+}
+```
+
+###构造函数形式声明
+
+```
+funtion fruit(p,c,w){
+	this.price = p;
+	this.color = c;
+	this.weight = w;
+	this.eat = function(){
+		alert('can eat');
+	}
+}
+
+var apple = new fruit('5$','red','50g');
+alert(apple.color);
+```
+
+## 访问对象的属性和方法
+
+```
+var phone = {
+	price:'5000$',
+	weight:'150g',
+	chat:function(){
+		alert('can chat');
+	}
+}
+document.write(phone.price);
+document.write(phone['price']);
+```
+
+## 对象的遍历
+
+```
+for(x in y){
+	
+}
+//x是属性名或方法名
+//y是要遍历的对象名
+```
+
+## 销毁对象或属性
+
+```
+//phone为一个对象
+
+delete phone.price; //删除对象属性
+
+phone = null; //销毁对象
+
+```
