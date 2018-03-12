@@ -31,7 +31,7 @@ result(); //123
 
 其中f2函数就是闭包,f2被赋予了全局变量result,而f2又依赖于f1，所以f1在运行之后没有自动销毁,始终存在于内存中
 
-具体可以看[阮一峰老师的博客](http://http://www.ruanyifeng.com/blog/2009/08/learning_javascript_closures.html)
+具体可以看[阮一峰老师的博客](http://www.ruanyifeng.com/blog/2009/08/learning_javascript_closures.html)
 
 ### 函数的自调用
 
