@@ -36,6 +36,7 @@ box.onclick = function(e){
 ### 事件对象的属性
 
 1. 鼠标事件
+
 ```
 //事件发生时,鼠标相对于浏览器的位置
 clientX
@@ -52,6 +53,7 @@ layerY
 ```
 
 2. 键盘事件
+
 ```
 // 获得键盘码(需要用fromCharCode转换)
 keyCode
