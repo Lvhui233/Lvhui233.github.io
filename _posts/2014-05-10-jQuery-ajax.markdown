@@ -8,7 +8,7 @@ header-img: "img/post-bg-os-metro.jpg"
 header-mask: 0.3
 catalog: true
 tags:
-    - JS
+    - jQuery
 ---
 
 ## jQuery中发送ajax请求
