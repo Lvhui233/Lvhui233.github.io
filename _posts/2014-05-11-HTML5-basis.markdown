@@ -32,7 +32,11 @@ hidden属性,隐藏该元素
 - nav标签,导航链接组
 - aside标签,侧边栏,广告栏
 - time标签,定义元素的日期时间
-`<time datetim="2014-05-11" pubdate="pubdate">2014-05-11</time>"`
+
+```
+<time datetim="2014-05-11" pubdate="pubdate">2014-05-11</time>"
+```
+
 - header标签,文档头部，页眉
 - footer标签,页脚,结尾
 - address标签,用于文档的相关信息
