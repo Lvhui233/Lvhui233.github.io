@@ -71,7 +71,7 @@ p{
 		width:900px;
 	}
 }
-/如有多段变化
+//如有多段变化
 @keyframes{
 	0%{
 		width:100px；
