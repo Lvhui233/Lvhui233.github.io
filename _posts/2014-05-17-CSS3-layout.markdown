@@ -1,0 +1,49 @@
+---
+layout:     post
+title:      "CSS3 布局"
+subtitle:   "CSS3 layout"
+date:       2014-05-17 12:00:00
+author:     "LvI"
+header-img: "img/post-bg-os-metro.jpg"
+header-mask: 0.3
+catalog: true
+tags:
+    - CSS3
+---
+
+## 布局
+
+### 元素水平和垂直居中
+
+1. 在js中获取可视区域宽高,然后再通过js改变元素的位置,达到居中的目的
+2. 让元素绝对定位,left和top值为50%,再调整外边距，达到居中的目的
+3. 让元素绝对定位,left和top值为50%,`transform: translate(-50%,-50%)`,达到居中目的
+
+### flex弹性布局
+
+`display:flex`设置flex布局
+
+
+- flex-direction定义主轴的方向
+属性值：row(默认)从左至右、row-reverse从右到左、column主轴为竖直方向，由上至下、column-reverse竖直方向由下到上
+
+- flex-wrap属性定义换行
+属性值：no-wrap(默认)不换行、wrap换行第一行在上方、wrap-reverse换行第一行在下方
+
+- justify-content定义在主轴上的排列方式
+属性值：flex-start(默认)左对齐、flex-end右对齐、center居中、space-between两端对齐，项目之间的间隔都相等、 space-around：每个项目两侧的间隔相等。所以，项目之间 的间隔比项目与边框的间隔大一倍
+
+- align-items定义项目在交叉轴上如何对齐
+属性值：flex-start起点对齐、flex-end终点对齐、center中点对齐、baseline项目第一行基线对齐、stretch：如果项目未设置高度或设为auto，将占满 整个容器的高度。
+
+- align-content多根轴线的对齐方法，只有一根不起作用
+属性值：flex-start与交叉轴起点对齐、flex-end与交叉轴终点对齐、center与交叉轴中点对齐、space-between与交叉轴两端对齐，轴线之间的间隔平均分布、space-round：每根轴线两侧的间隔都相等。所以,轴线之间的间隔比轴线与边框的间隔大一倍,stretch（默认值）轴线占满整个交叉轴
+
+- order属性定义项目的排列顺序
+数值越小，排列越靠前，默认为0
+
+### 淘宝flexible布局
+
+对移动端有较好的支持
+
+

@@ -1,0 +1,152 @@
+---
+layout:     post
+title:      "HTML5 基础"
+subtitle:   "HTML5 basis"
+date:       2014-05-11 12:00:00
+author:     "LvI"
+header-img: "img/post-bg-os-metro.jpg"
+header-mask: 0.3
+catalog: true
+tags:
+    - HTML5
+---
+
+## 全局属性
+
+contenteditable属性,允许编辑文档内容
+
+```
+<p contenteditable="true">Hello</p>
+```
+
+hidden属性,隐藏该元素
+
+```
+<p hitdden>Hello</p>
+```
+
+## 语义化的新标签
+
+- article标签,用于显示文章
+- section标签,给内容文章进行分区分块
+- nav标签,导航链接组
+- aside标签,侧边栏,广告栏
+- time标签,定义元素的日期时间`<time datetim="2014-05-11" pubdate="pubdate>2014-05-11</time>"`
+- header标签,文档头部，页眉
+- footer标签,页脚,结尾
+- address标签,用于文档的相关信息
+- code标签,用于显示程序代码
+- mark标签,用于突出显示文本
+- ins和del标签,下滑线和删除线效果
+- optgroup标签,为select中的option标签分组
+
+```
+<select name="select" id="select"> 
+	<optgroup label="城市"> 
+		<option value="beijing">北京</option> 
+		<option value="nanjing">南京</option> 
+	</optgroup> 
+	<optgroup label="sex"> 
+		<option value="boy">男</option> 
+		<option value="girl">女</option> 
+	</optgroup> 
+</select>
+```
+
+- progress标签,进度条标签,显示完成的进度
+
+```
+<progress value="10" max="100">
+```
+
+## 表单相关
+
+### 新表单类型
+
+- email类型,输出内容必须为邮箱
+
+- url类型,输出内容必须为url
+
+- number类型，输入数值的文本框
+
+```
+//min：最小值,max：最大值,step：间隔
+<input type="number" min="1" max="10" step="2">
+```
+
+- range类型,指定范围内的数字,表示形式为滑块
+
+```
+<input type="range" min="1" max="10" step="2">
+```
+
+- date 日期文本框
+- week  星期文本框
+- time 时间文本框
+- datetime-local 日期时间文本框
+- search 搜索文本框
+- tel 电话文本框
+- color 颜色文本框
+
+- dattalist 定义选项列表,用于输入自动匹配
+
+```
+<form action='' method='post' autocomplete='on'>
+	<input type="text" name="city" list="citylist">
+	<datalist id="citylist">
+		<option value="beijing">beijing</option>
+		<option value="shanghai">shanghai</option>
+		<option value="nanjing">nanjing</option>
+	</datalist>
+</form>
+```
+
+### 表单属性
+
+- autofocus 自动获取焦点
+
+```
+<form action='' method='post'>
+	<input type="name" autofocus="on">
+	<input type="submit">
+</form>
+```
+
+- form 属性 提交form标签以外的表单
+
+```
+<form id='form' action='' method='post'>
+	<input type="text" name="">
+	<input type="submit" name="">
+</form>
+<input type="number" name="" form="form">
+```
+
+- multiple属性 设置后可以设置多个文件上传
+
+```
+<form action="" method="post" enctype="mutiplart/form-data">
+	<input type="file" name="file[]" mu;tiple="multiple">
+	<input type="submit" />
+</form>
+```
+
+- placeholder属性 设置文本框提示信息
+
+```
+<input type="text" name="title" placeholder="请输入文字">
+```
+
+- pattern属性 通过正则表达式验证表单
+
+```
+<input type="text" name="title" pattern="[1|0]" title=" 请输入1或0">
+```
+
+- required属性 设定后表单内容不能为空
+
+```
+<input type="text" name="" required>
+```
+
+
