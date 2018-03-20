@@ -49,7 +49,7 @@ $scope服务是方法与属性的集合，用于与视图进行交互,使用ng-b
 <div ng-app="box ng-controller="ctrl" ng-bind="price*2"></div>
 ```
 
-- `{{}}`花括号直接写在标签中,字符量大时使用,但在angular.js加载完成前,会在页面中显示花括号
+- {{}}花括号直接写在标签中,字符量大时使用,但在angular.js加载完成前,会在页面中显示花括号
 
 ```
 <div ng-app="box ng-controller="ctrl">{{price*3}}</div>
@@ -71,13 +71,13 @@ ng-cloak可以解决花括号问题,定义了ng-cloak类时模块标签会隐藏
 
 ## 设置初始数据
 
-1. ng-init属性设置初始数据
+- ng-init属性设置初始数据
 
 ```
 <div ng-app="box" ng-controller="ctrl" ng-init="a=1;b=2"></div>
 ```
 
-2. 在js中定义
+- 在js中定义
 
 ```
 $scope.a=1;
