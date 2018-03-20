@@ -34,7 +34,7 @@ hidden属性,隐藏该元素
 - time标签,定义元素的日期时间
 
 ```
-<time datetim="2014-05-11" pubdate="pubdate">2014-05-11</time>"
+<time datetime="2014-05-11" pubdate="pubdate">2014-05-11</time>
 ```
 
 - header标签,文档头部，页眉
@@ -154,4 +154,9 @@ hidden属性,隐藏该元素
 <input type="text" name="" required>
 ```
 
+- pattern属性 规定用于验证输入字段的模式,模式指的是正则表达式
+
+```
+<input type="text" pattern="^\d+$">
+```
 

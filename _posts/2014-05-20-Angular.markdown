@@ -1,0 +1,276 @@
+---
+layout:     post
+title:      "Angular JS "
+subtitle:   "Angular JS"
+date:       2014-05-20 12:00:00
+author:     "LvI"
+header-img: "img/post-bg-os-metro.jpg"
+header-mask: 0.3
+catalog: true
+tags:
+    - Angular JS
+---
+
+## angular
+
+AngularJS有着诸多特性，最为核⼼心的是：MVVM、模块化、⾃自动化双向数据绑定、语义化标 签、依赖注入等等
+
+AngularJS官网:[https://angularjs.org](https://angularjs.org/)
+
+## 定义模块与控制器
+
+- ng-app 指令定义一个angular应用模块,用于管理控制器,指令,服务的内容
+- ng-controller 指令定义一个angular控制器,控制器是直接与视图交互用于连接服务与视图的中间层
+
+```
+<script type="text/javascript" src="http://cdn.bootcss.com/angular.js/1.4.6/angular.js"></script>
+<div ng-app="box" ng-controller="ctrl">
+	<h1>{{price}}</h1>
+</div>
+<script type="text/javascript">
+//创建模块
+var box = angular.module('box',[]);
+//创建控制器
+box.controller('ctrl',['$scope',function($scope){
+		$scope.price='200';
+	}])
+</script>
+```
+
+## $scope服务
+
+$scope服务是方法与属性的集合，用于与视图进行交互,使用ng-bind,ng-model等指令
+
+## 绑定与显示数据
+
+- `ng-bind`标签属性绑定数据,适合不连接大量字符时使用
+
+```
+<div ng-app="box ng-controller="ctrl" ng-bind="price*2"></div>
+```
+
+- `{{}}`花括号直接写在标签中,字符量大时使用,但在angular.js加载完成前,会在页面中显示花括号
+
+```
+<div ng-app="box ng-controller="ctrl">{{price*3}}</div>
+```
+
+## ng-cloak
+
+ng-cloak可以解决花括号问题,定义了ng-cloak类时模块标签会隐藏,angular.js解析完页面后会将有ng-cloak类的标签显示出来
+
+```
+//定义ng-cloak类
+<style type="text/css">
+	.ng-cloak{
+		display: none;
+	}
+</style>
+<div ng-app="box" ng-cloak></div>
+```
+
+## 设置初始数据
+
+1. ng-init属性设置初始数据
+
+```
+<div ng-app="box" ng-controller="ctrl" ng-init="a=1;b=2"></div>
+```
+
+2. 在js中定义
+
+```
+$scope.a=1;
+$scope.b=2;
+```
+
+## 表单使用
+
+### ng-model
+
+ng-model 指令把数据绑定到页面中的表单元素上,同时实现双向数据绑定MVVM,ng-model相当于托管了value属性
+
+```
+<input type="text" name="name" ng-model="name">
+<h1 ng-bind="name"></h1>
+```
+
+### ng-model-options
+
+用于控制数据同步的时机
+
+```
+//失去焦点1秒后同步数据
+<input type="text" ng-model="price" ng-model-options="{updateOn:'blur',debounce:1000}" />
+```
+
+### ng-value
+
+ng-value用于设置表单的值
+
+### ng-disabled
+
+有两个值,为true时不能操作,为false时可以操作,可以用作表达提交按钮是否可以点击
+
+```
+<input type="checkbox" ng-model="sta">
+同意用户协定！
+<input type="button" value="注册" ng-disabled="!sta">
+```
+
+### 单选框
+
+```
+<input type="radio" ng-model="status" ng-value="1">open
+<input type="radio" ng-model="status" ng-value="0">close
+```
+
+### 复选框
+
+- ng-true-value 选中值得数据值
+- ng-false-value 取消选中时的数据值
+
+```
+<div ng-app="box" ng-controller="ctrl">
+	<input type="checkbox" ng-model="sex.male" ng-true-value="1" ng-false-value="0">
+	<input type="checkbox" ng-model="sex.female" ng-true-value="1 ng-false-value="0>
+</div>
+<script type="text/javascript">
+	var box = angular.module('box',[])
+	box.controller('ctrl',['$scope',function($scope){
+			$scopr.sex={boy:1,girl:1};
+		}]);
+</script>
+```
+
+### 下拉列表
+
+需要在ng-options中用到遍历
+
+- v  遍历的记录
+- v.value  为option标签的value
+- v.name 为option标签的显示文本 
+
+```
+<div ng-app="box" ng-controller="ctrl">
+	<select ng-options="v.value as v.name for v in city" ng-model="chengshi">
+		<option value>请选择城市</option>
+	</select>
+</div>
+<script>
+	var box = angular.module("box",[]);
+	box.controller('ctrl',['$scope',function($scopr){
+			$scope.city=[
+				{name="北京",value="beijing"},
+				{name="上海",value="shanghai},
+				{name="重庆",value="chongqing"}，
+			]
+		}]);
+</script>
+```
+
+## ng-repeat遍历数据
+
+```
+<div ng-app="box" ng-controller="ctrl">
+	<li ng-repeat=(k,v) in fruit>{{v}}</li>
+</div>
+<script type="text/javascript">
+	angular.module('box',[]).controller("ctrl",['$scope',function($scope){
+		$scope.fruit=['apple','orange','watermelon'];
+		}])
+</script>
+```
+
+## 绑定事件
+
+```
+//ng-click绑定单击事件
+<div ng-app="box" ng-controller="ctrl">
+	<h1>{{num}}</h1>
+	<input type="button" value="plus" ng-click="fun()">
+</div>
+<script type="text/javascript">
+	angular.module("box",[]).controller('ctrl',['$scope',function($scope){
+		$scope.num=0;
+		$scope.fun=function(){
+			$scope.num++;
+		}
+	}])
+</script>
+```
+
+## 函数库
+
+```
+//显示版本号
+angular.version
+
+//转换成小写
+angular.lowercase('Hello');
+
+//深拷贝对象或数组(a中数据拷如b中)
+angular.copy(a,b);
+
+//增加数据对象(破坏性操作)
+var fruit ={'apple','banana'};
+angular.extend(fruit,{orange,watermelon})
+
+//遍历
+angular.forEach(object,function(v,k){
+		console.log(k+'=>'+v);
+	})
+
+//json字符串转换成对象
+var jack ='{"age:18,"sex":"male}';
+var obj =angular.fromJson(jack);
+//将对象转换为json字符串
+var str = angular.toJson(obj);
+```
+
+## 样式指令
+
+### ng-show与ng-if
+
+两者都可以控制标签的显示与隐藏,区别在于ng-show通过改变display属性,而ng-if是直接删除或添加元素
+
+```
+<div ng-show="state==1"></div>
+<div ng-if="state==0"></div>
+```
+
+### ng-hide
+
+true时隐藏,控制display属性
+
+### ng-class 
+
+```
+<style type="text/css">
+	a.{
+		color: red;
+	}
+	b.{
+		font-size:50px;
+	}
+</style>
+//true时启用类,false时不启用类
+<div ng-class="{a:true,b:false}"></div>
+```
+
+### ng-class-odd与ng-class-even
+
+```
+//奇数行使用a类样式
+ng-class-odd="'a'"
+//偶数行使用b类样式
+ng-class-even="'b"
+```
+
+### ng-style
+
+设置行样式
+
+```
+<p ng-style="{color:'red',fontSize:'99px'}">hello</p>
+```

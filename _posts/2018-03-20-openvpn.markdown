@@ -1,0 +1,36 @@
+---
+layout:     post
+title:      "openvpn "
+subtitle:   "openvpn"
+date:       2018-03-20 12:00:00
+author:     "LvI"
+header-img: "img/post-bg-os-metro.jpg"
+header-mask: 0.3
+catalog: true
+tags:
+    - VPN
+---
+
+## 在服务器上安装openvpn服务
+
+```
+wget https://git.io/vpn -O openvpn-install.sh && bash openvpn-install.sh
+```
+
+详细代码可以看[这里](https://github.com/smallmuou/openvpn-install)
+
+可以再次运行命令进行用户添加,移出,卸载等操作，具体过程可以看提示自行选择
+
+.ovpn文件会生成在root文件夹下,一般是你设置的名字.ovpn
+
+## windows客户端的安装
+
+openvpn客户端[下载地址](https://openvpn.net/index.php/open-source/downloads.html)
+
+正常安装后,将.ovpn文件放到安装目录的config文件夹中,之后运行文件connect就能够使用了
+
+```
+//若出现以下错误,是openvpn虚拟网卡被配置了ip,改成自动获取就可以了
+Wed Aug 01 08:42:18 2012 NETSH: C:\WINDOWS\system32\netsh.exe interface ip set address 
+Wed Aug 01 08:42:13 2012 ERROR: netsh command failed: returned error code 1 
+```
