@@ -49,9 +49,9 @@ unserialize($arr);
 ```
 session_start();
 //存入信息
-$SESSION['num']=1;
+$_SESSION['num']=1;
 //获取信息
-$a=$SESSION['num'];
+$a=$_SESSION['num'];
 ```
 
 ### session_id相关信息
@@ -70,9 +70,9 @@ setcookie(session_name(),session_id(),time()+3600*24*7,'/');
 
 ```
 //删除session变量
-unset($SESSION('name'));
+unset($_SESSION('name'));
 //删除所有session变量，不删除session文件
-$SESSION=array();
+$_SESSION=array();
 //释放当前内存中创建的所有session变量,但不删除session文件和session_id
 session_unset();
 //删除当前用户对应的session文件，释放session_id,但不删除session变量内容

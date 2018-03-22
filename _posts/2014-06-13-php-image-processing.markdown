@@ -1,6 +1,6 @@
 ---
 layout:     post
-title:      "PHP面图像处理"
+title:      "PHP图像处理"
 subtitle:   "PHP image processing"
 date:       2014-06-13 12:00:00
 author:     "LvI"
@@ -73,6 +73,6 @@ imagecopy();
 imagecopymerge();
 //复制部分图像并重新定义大小
 imagecopyresized();
-
+```
 
 
