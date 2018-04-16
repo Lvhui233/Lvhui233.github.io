@@ -1,0 +1,124 @@
+---
+layout:     post
+title:      "Linux下jekyll下载与安装"
+subtitle:   "Install jekyll under linux"
+date:       2017-04-16 22:10:00
+author:     "LvI"
+header-img: "img/post-bg-os-metro.jpg"
+header-mask: 0.3
+catalog: true
+tags:
+    - blog
+---
+
+
+## 安装ruby
+
+- 先确认是否已安装ruby
+
+```
+$ ruby -v
+```
+
+- 安装ruby
+
+```
+$ sudo yum install ruby
+```
+
+ubuntu下使用
+
+```
+$ sudo apt install ruby
+```
+
+再次查看ruby版本
+
+```
+$ ruby -v
+```
+
+输出
+
+```
+ruby 2.0.0p648 (2015-12-16) [x86_64-linux]
+```
+
+如果gem在中国不能用需要移除默认仓库,并添加中国的仓库
+
+```
+$ gem sources --remove https://rubygems.org/
+$ gem sources -a https://gems.ruby-china.org/
+```
+
+有时候在ruby下使用gem安装包是会有如下报错
+
+```
+ERROR:  Error installing bluecloth:  
+ERROR: Failed to build gem native extension.  
+  
+/System/Library/Frameworks/Ruby.framework/Versions/2.1/usr/bin/ruby  
+extconf.rb  
+mkmf.rb can't find header files for ruby at  
+/System/Library/Frameworks/Ruby.framework/Versions/2.1/usr/lib/ruby/ruby.h 
+```
+
+centos等系统下,执行
+
+```
+$ sudo yum install ruby-devel
+```
+
+ubuntu等系统下,执行
+
+```
+$ sudo apt-get install ruby-dev
+```
+
+## 安装jekyll
+
+```
+$ sudo gem install jekyll
+```
+
+### 克隆主题
+
+```
+$ git clone https://github.com/chrisbobbe/jekyll-theme-prologue.git
+```
+
+### 安装主题
+
+```
+$ cd lvhui233.github,io
+$ bundle install
+```
+
+### 启动jekyll
+
+``` 
+$ jekyll server
+```
+
+如果出现如下错误
+
+```
+Dependency Error: Yikes! It looks like you don’t have jekyll-paginate or one of its 
+dependencies installed. In order to use Jekyll as currently configured, you’ll need 
+to install this gem. The full error message from Ruby is: ‘cannot load such 
+file – jekyll-paginate’ If you run into trouble, you can find helpful resources at 
+Getting Helpjekyll 3.1.2 | Error: jekyll-paginate
+```
+
+运行`gem install jekyll-paginate`即可解决问题
+
+## jekyll文档
+
+[jekyll 官方文档](http://www.jekyll.com.cn/)
+
+
+
+
+
+
+
