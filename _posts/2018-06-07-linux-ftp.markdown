@@ -1,0 +1,91 @@
+---
+layout:     post
+title:      "vsftp安装与配置 "
+subtitle:   "install and config of vsftpd service"
+date:       2018-06-07 12:00:00
+author:     "LvI"
+header-img: "img/post-bg-os-metro.jpg"
+header-mask: 0.3
+catalog: true
+tags:
+    - linux
+---
+
+## ftp
+
+在linux上使用ftp我们需要安装vsftpd服务
+
+### 安装vsftpd
+
+```
+# 查看是否已安装了vsftpd
+rpm -qa | grep vsftpd
+
+# yum安装vsfptd
+yum -y install vsftpd
+
+# 启动服务
+systemctl start vsftpd.service
+
+# 设置开机自启
+systemctl enable vsftpd.servic
+```
+
+### 配置
+
+vsftpd的配置文件`/etc/vsftpd/vsftpd.conf`
+
+需要修改的配置项
+
+```
+# 是否允许匿名用户登录，默认开启,最后关闭
+anonymous_enable=YES
+
+# 指定所有用户登录访问的目录,默认是没有的,有需要的话要自己加上
+local_root=/usr/share/nginx/html
+
+# 限制所有用户都只能访问该用户的home目录，默认是注释掉的
+chroot_local_user=YES
+
+# 如果开启chroot_local_user=YES 则需要在下面加上
+allow_writeable_chroot=YES
+```
+
+### 创建ftp用户
+
+```
+# 添加一个名为newuser的用户，用户文件夹位置为：/usr/share/nginx/html，并禁止此用户登陆服务器
+useradd -d /usr/share/nginx/ -s /sbin/nologin newuser
+
+# 为newuser设置密码
+passwd newuser
+```
+
+### 防火墙和SELinux设置
+
+如果开启了防火墙则需要进行设置
+
+```
+# 防火墙设置，分别执行如下命令：
+firewall-cmd --permanent --zone=public --add-service=ftp
+firewall-cmd --reload
+
+# SELinux设置
+# 临时关闭：
+setenforce 0
+
+# 永久关闭方法：修改/etc/selinux/config文件中，设置SELINUX=disable，并重启服务器
+```
+
+### 调整文件夹权限
+
+现在连接上ftp可能无法上传文件,这就需要修改目录的权限
+
+```
+chmod 777 /usr/share/nginx/html
+```
+
+## 总结
+
+以上只是为了新手快速使用所进行的配置，ftp登录模式共有三种,匿名用户登录、本地用户登录和虚拟用户登录，具体的操作需要进一步学习
+

@@ -1,0 +1,194 @@
+---
+layout:     post
+title:      "利用webhoots自动部署代码"
+subtitle:   "webhooks"
+date:       2018-06-11 12:00:00
+author:     "LvI"
+header-img: "img/post-bg-os-metro.jpg"
+header-mask: 0.3
+catalog: true
+tags:
+    - lnmp
+---
+
+公司都是直接将代码传到服务器上，很少用到托管平台，所以想试一下自动部署
+
+## 安装git
+
+```
+# yum安装git
+yum install git
+
+# 查看git版本
+git --vesion
+
+# 配置基本信息
+git config --global user.name "用户名"
+git config --global user.email 邮箱
+
+# 查看配置信息
+git config --list
+```
+
+## linux下查看php运行用户
+
+nginx本身不能处理PHP，静态页面nginx会自己处理，如果是php请求，则转发给php解释器处理。
+
+在这个过程中就涉及到两个用户，一个是nginx运行的用户，一个是php-fpm运行的用户。如果访问的是一个静态文件，只需要nginx运行的用户对文件具有读权限或者读写权限。如果访问的是一个php文件，首先需要nginx运行的用户对文件有读取权限，读取文件后转发给php-fpm，此时需要php-fpm用户对文件具有有读权限或者读写权限。
+
+### 查看nginx运行的用户
+
+执行以下命令
+
+```
+ps aux|grep nginx
+```
+
+![](http://lvhui233.github.io/img/in-post/nginx-user.png)
+
+可以看到父进程运行在root用户下，子进程运行在nginx用户下，这和在nginx.conf中配置的用户一致,配置文件位置`/etc/nginx/nginx.conf`
+
+![](http://lvhui233.github.io/img/in-post/nginxconfig-user.png)
+
+### 查看php-fpm运行的用户
+
+执行以下命令
+
+```
+ps aux|grep php-fpm
+```
+
+可以看到父进程运行在root用户下，子进程都在apache用户下
+
+![](http://lvhui233.github.io/img/in-post/php-fpm-run-user.png)
+
+或者可以在php文件中写入以下代码，并进行访问
+
+```
+<?php
+	echo shell_exec('id -a');
+```
+
+显示`uid=48(apache) gid=48(apache) groups=48(apache)`，则用户为apache
+
+### 修改php-fpm的运行用户及项目目录对nginx用户及nginx用户组具有所有权限
+
+- 修改php-fpm中的配置文件`/etc/php-fpm.d/www.conf`改变运行的用户
+
+![](http://lvhui233.github.io/img/in-post/php-fpm-user-change.png)
+
+```
+# 编辑完毕后，重启php-fpm
+systemctl restart php-fpm
+# 再次查看php-fpm运行用户
+ps aux|grep php-fpm
+```
+
+![](http://lvhui233.github.io/img/in-post/changed-php-fpm.png)
+
+可以看到已经全部变成nginx用户
+
+- 修改目录的用户与用户组所有权
+
+```
+# mini为要修改所有权的目录
+chown nginx:nginx -R mini
+```
+
+之后可能还需要修改个别文件与文件夹权限
+
+## github上webhooks配置
+
+在项目的设置中添加新的webhooks,如下
+
+![](http://lvhui233.github.io/img/in-post/github-webhooks.png)
+
+## webhooks访问的php文件
+
+以下代码取自githubgist,并做了一部分更改，[原地址](https://gist.github.com/milo/daed6e958ea534e4eba3)
+
+```
+<?php
+//设置中配置的secret
+$hookSecret = 's.e.c.r.e.t';  # set NULL to disable check
+//需要执行拉取的目录路径
+$project = '/usr/share/nginx/html/mini';
+
+set_error_handler(function($severity, $message, $file, $line) {
+	throw new \ErrorException($message, 0, $severity, $file, $line);
+});
+
+set_exception_handler(function($e) {
+	header('HTTP/1.1 500 Internal Server Error');
+	echo "Error on line {$e->getLine()}: " . htmlSpecialChars($e->getMessage());
+	die();
+});
+
+$rawPost = NULL;
+if ($hookSecret !== NULL) {
+	if (!isset($_SERVER['HTTP_X_HUB_SIGNATURE'])) {
+		throw new \Exception("HTTP header 'X-Hub-Signature' is missing.");
+	} elseif (!extension_loaded('hash')) {
+		throw new \Exception("Missing 'hash' extension to check the secret code validity.");
+	}
+
+	list($algo, $hash) = explode('=', $_SERVER['HTTP_X_HUB_SIGNATURE'], 2) + array('', '');
+	if (!in_array($algo, hash_algos(), TRUE)) {
+		throw new \Exception("Hash algorithm '$algo' is not supported.");
+	}
+
+	$rawPost = file_get_contents('php://input');
+	if ($hash !== hash_hmac($algo, $rawPost, $hookSecret)) {
+		throw new \Exception('Hook secret does not match.');
+	}
+};
+
+if (!isset($_SERVER['CONTENT_TYPE'])) {
+	throw new \Exception("Missing HTTP 'Content-Type' header.");
+} elseif (!isset($_SERVER['HTTP_X_GITHUB_EVENT'])) {
+	throw new \Exception("Missing HTTP 'X-Github-Event' header.");
+}
+
+switch ($_SERVER['CONTENT_TYPE']) {
+	case 'application/json':
+		$json = $rawPost ?: file_get_contents('php://input');
+		break;
+
+	case 'application/x-www-form-urlencoded':
+		$json = $_POST['payload'];
+		break;
+
+	default:
+		throw new \Exception("Unsupported content type: $_SERVER[CONTENT_TYPE]");
+}
+
+# Payload structure depends on triggered event
+# https://developer.github.com/v3/activity/events/types/
+$payload = json_decode($json);
+
+switch (strtolower($_SERVER['HTTP_X_GITHUB_EVENT'])) {
+	case 'push':
+	echo shell_exec("cd $project && git pull");
+		break;
+
+//	case 'create':
+//		break;
+
+	default:
+		header('HTTP/1.0 404 Not Found');
+		echo "Event:$_SERVER[HTTP_X_GITHUB_EVENT] Payload:\n";
+		print_r($payload); # For debug only. Can be found in GitHub hook log.
+		die();
+}
+```
+
+之后需要修改执行文件的所属用户和用户组,并修改权限。同时修改需要拉取的目的用户及用户组,并修改文件夹权限,以使用户能够有写入权限。
+
+最后在本地提交代码
+
+```
+git push -u origin master
+```
+
+由于订阅了push事件,每次提交服务器都会自动拉取代码了
+
